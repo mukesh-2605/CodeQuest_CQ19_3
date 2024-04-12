@@ -1,0 +1,186 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<style>
+body{
+background-image:url("image/b4.jpg");
+background-repeat:no-repeat;
+background-size: 1370px  640px;
+
+}
+.myDiv {
+
+  background-color: #fff5e600;    
+  border-radius: 1px;
+  width:400px;
+  height:280px;
+  margin: auto;
+  padding-top:30px;
+  /* box-shadow: 25px 20px 20px #888888; */
+  
+}
+.myDiv2 {
+  font-size:25px;  
+  font-style: italic;
+font-weight: bold;
+color:red; 
+}
+span{
+color:black;
+}
+a{
+text-decoration:none;
+font-weight: bold;
+color:black;
+ font-size:25px;}
+lable{
+color:white;
+font-size:25px;
+}
+</style>
+<body>
+
+
+<center>
+<div class="myDiv2">
+Team Leader Login
+</div>
+</center>
+<br><br><br><br><br>
+ <form action="teamlog" method="post"> 
+<div class="myDiv">
+<center>
+
+   <lable> Team Name:</lable><br><br>
+   <select name="teams" id="cars" style="width:280px;height:40px;border-radius: 1px;text-align:center;"><br><br>>
+  <option value="Team A">Team A</option>
+  <option value="Team B">Team B</option>
+  <option value="Team C">Team C</option>
+  <option value="Team D">Team D</option>
+  
+</select><br><br>
+<lable> Password     :</lable><br><br>
+  <input type="password" name="pass" placeholder="Password" style="width:280px;height:40px;border-radius: 1px;text-align:center;"><br><br>
+  <input type="submit" value="Submit" style="width:100px;height:40px;border-radius: 1px;"><br><br>
+ 
+ <a href="teamleaderreg.jsp">REGISTER HERE!!!</a>
+  </center>
+</div>
+
+ </form>
+</body>
+</html>
+Stafreg.jsp; <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type='text/javascript' src='js/jquery-3.6.0.min.js'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+
+<style>
+body{
+background-image:url("image/b2.jpg");
+background-size: 1370px 650px;
+}
+.myDiv {
+  border: 1px outset #0e0c09;
+  background-color: #da654a;    
+  border-radius: 1px;
+  width:400px;
+  height:450px;
+  margin: auto;
+  padding-top:30px;
+  /* box-shadow: 25px 20px 20px #888888; */
+  
+}
+.myDiv2 {
+  font-size:25px;  
+  font-style: italic;
+font-weight: bold;
+color:#da654a; 
+}
+span{
+color:White;
+}
+a{
+text-decoration:none;
+font-weight: bold;
+color:black;}
+</style>
+
+
+</head>
+<body>
+
+<br>
+<center>
+<div class="myDiv2">
+<span> Staffs</span> Register <span>Page</span>
+</div>
+</center>
+<br><br>
+ <form action="staffreg" method="post"> 
+<div class="myDiv">
+<center>
+
+   <input type="text" name="name" placeholder="Enter Name" style="width:280px;height:40px;border-radius: 10px;text-align:center;"><br><br>
+ 
+   <select name="teams" id="cars" style="width:280px;height:40px;border-radius: 10px;text-align:center;"><br><br>>
+  <option value="Team A">Team A</option>
+  <option value="Team B">Team B</option>
+  <option value="Team C">Team C</option>
+  <option value="Team D">Team D</option>
+  
+</select><br><br>
+  <input type="email" name="email" placeholder="Enter email" style="width:280px;height:40px;border-radius: 10px;text-align:center;"><br><br>
+  <input type="number" name="number" id="fieldSelectorId" placeholder="Enter Number" style="width:280px;height:40px;border-radius: 10px;text-align:center;"><br><br>
+
+  
+    <input type="password" name="pass" id="password1" placeholder="Password" style="width:280px;height:40px;border-radius: 10px;text-align:center;"><br><br>
+  <input type="password" name="cpass" id="password2" placeholder="Confirm Password" style="width:280px;height:40px;border-radius: 10px;text-align:center;"><br><br>
+  <input type="submit" value="Register" style="width:100px;height:40px;border-radius: 10px;"><br><br>
+ 
+
+  </center>
+</div>
+
+ </form>
+ 
+</body>
+                        <script>
+				window.onload = function () {
+					document.getElementById("password1").onchange = validatePassword;
+					document.getElementById("password2").onchange = validatePassword;
+				}
+
+				function validatePassword() {
+					var pass2 = document.getElementById("password2").value;
+					var pass1 = document.getElementById("password1").value;
+					if (pass1 != pass2)
+						document.getElementById("password2").setCustomValidity("Password Doesn't Match");
+					else
+						document.getElementById("password2").setCustomValidity('');
+					//empty string means no validation error
+				}
+			</script>
+			<script>
+jQuery(document).ready(function () {
+    jQuery("#fieldSelectorId").keypress(function (e) {
+       var length = jQuery(this).val().length;
+     if(length > 9) {
+          return false;
+     } else if(e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+          return false;
+     } else if((length == 0) && (e.which == 48)) {
+          return false;
+     }
+    });
+  });</script>
+</html>
