@@ -1,0 +1,105 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+        <%@page import=" dbcon.dbcon"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement" %>
+<%@page import="java.sql.*" %>
+<%@page import="java.util.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<style>
+table{
+  width: 100%;
+}
+table,tr,th,td{
+  border-bottom: 1px solid #ddd;
+  text-align:center;
+}
+</style>
+<body>
+<center>
+<button onclick="goBack()">Go Back</button>
+  <div class="container-fluid">  <br>
+<table class="table-dark">
+ <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">TEAM</th>
+        <th scope="col">FILENAME</th>
+      
+      <th scope="col">STATUS</th>
+      </tr>
+       </thead>
+ 
+
+<%String email=session.getAttribute("tleader").toString(); %>
+
+	
+       <%
+       
+       Connection con;
+       
+       
+       con=dbcon.create();
+       PreparedStatement ps=con.prepareStatement("SELECT * FROM `team`.`request` where team='"+email+"' and status='Requested' ");
+       
+       ResultSet rs=ps.executeQuery();
+       
+       while(rs.next())
+       {
+    	  String name1=rs.getString(1);  
+    
+    	String emaill=rs.getString(4);
+    	String doctor=rs.getString(5);
+
+    	
+    	  
+    	   
+       %>
+	
+
+	
+
+
+     <tr>
+
+     <td style="text-align: center;"><%=rs.getString(1)%></td>
+
+      <td style="text-align: center;"><%= rs.getString(2) %></td>
+       <td style="text-align: center;"><%=  rs.getString(3) %></td>
+ <td style="text-align: center;"><%=  rs.getString(4) %></td>
+  
+<td><a href="accept.jsp?id=<%=rs.getString(1)%>&&staff=<%=rs.getString(2)%>&&team=<%=rs.getString(3)%>&&filename=<%=rs.getString(4)%>"><button class="btn btn-primary">Accept</button></a></td>
+    
+     </tr>
+	<%} %>
+
+
+
+
+
+
+</table>
+
+</div>
+</center>
+
+</body>
+<script>
+$(window).on("load resize ", function() {
+	  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+	  $('.tbl-header').css({'padding-right':scrollWidth});
+	}).resize();
+</script>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>
